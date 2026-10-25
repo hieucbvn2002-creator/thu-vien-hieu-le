@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư viện Hiếu Lê</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            color: #333;
+        }
+
+        header {
+            background: #176b52;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #10523f;
+            padding: 14px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .banner {
+            background: #dcefe6;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .search-box {
+            margin-top: 20px;
+        }
+
+        .search-box input {
+            width: 60%;
+            max-width: 450px;
+            padding: 12px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 18px;
+            background: #176b52;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #176b52;
+        }
+
+        .books {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .book {
+            flex: 1 1 200px;
+            background: white;
+            padding: 22px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 6px #ddd;
+        }
+
+        .book-icon {
+            font-size: 45px;
+        }
+
+        footer {
+            background: #10523f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+
+            .search-box input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>THƯ VIỆN HIẾU LÊ</h1>
+        <p>Tri thức là chìa khóa mở ra tương lai</p>
+    </header>
+
+    <nav>
+        <a href="#home">Trang chủ</a>
+        <a href="#books">Sách nổi bật</a>
+        <a href="#about">Giới thiệu</a>
+        <a href="#contact">Liên hệ</a>
+    </nav>
+
+    <section class="banner" id="home">
+        <h2>Chào mừng bạn đến với thư viện</h2>
+        <p>Khám phá kho tài liệu và nguồn tri thức phong phú.</p>
+
+        <div class="search-box">
+            <input type="text" id="keyword"
+                   placeholder="Nhập tên sách hoặc tác giả...">
+            <button onclick="searchBooks()">Tìm kiếm</button>
+            <p id="message"></p>
+        </div>
+    </section>
+
+    <main>
+        
+<section id="books">
+    <h2>Danh mục sách</h2>
+
+    <div class="books">
+        <div class="book">
+            <div class="book-icon">📘</div>
+            <h3>Lập trình HTML và CSS</h3>
+            <p>Tác giả: Nguyễn Văn A</p>
+            <p>Thể loại: Công nghệ thông tin</p>
+        </div>
+
+        <div class="book">
+            <div class="book-icon">📗</div>
+            <h3>Đắc Nhân Tâm</h3>
+            <p>Tác giả: Dale Carnegie</p>
+            <p>Thể loại: Kỹ năng sống</p>
+        </div>
+
+        <div class="book">
+            <div class="book-icon">📕</div>
+            <h3>Dế Mèn Phiêu Lưu Ký</h3>
+            <p>Tác giả: Tô Hoài</p>
+            <p>Thể loại: Văn học</p>
+        </div>
+
+        <div class="book">
+            <div class="book-icon">📙</div>
+            <h3>Lược Sử Thời Gian</h3>
+            <p>Tác giả: Stephen Hawking</p>
+            <p>Thể loại: Khoa học</p>
+        </div>
+    </div>
+</section>
+
+        <section id="about">
+            <h2>Giới thiệu</h2>
+            <p>
+                Thư viện trực tuyến cung cấp thông tin về tài liệu,
+                hỗ trợ bạn đọc tìm kiếm và tiếp cận tri thức thuận tiện.
+            </p>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <p>Địa chỉ: Thư viện Hiếu Lê</p>
+        <p>Email: hieucbvn2002@gmail.com</p>
+        <p>&copy; 2026 - Thư viện Hiếu Lê</p>
+    </footer>
+
+   
+<script>
+    function searchBooks() {
+        const keyword = document
+            .getElementById("keyword")
+            .value.trim().toLowerCase();
+
+        const books = document.querySelectorAll(".book");
+        const message = document.getElementById("message");
+        let count = 0;
+
+        books.forEach(function(book) {
+            const content = book.textContent.toLowerCase();
+            const matched = content.includes(keyword);
+
+            book.style.display = matched ? "" : "none";
+
+            if (matched) {
+                count++;
+            }
+        });
+
+        if (keyword === "") {
+            message.textContent = "Đang hiển thị toàn bộ sách.";
+        } else if (count > 0) {
+            message.textContent =
+                "Tìm thấy " + count + " tài liệu.";
+        } else {
+            message.textContent =
+                "Không tìm thấy tài liệu phù hợp.";
+        }
+    }
+
+    document.getElementById("keyword")
+        .addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                searchBooks();
+            }
+        });
+</script>
+
+</body>
+</html>
